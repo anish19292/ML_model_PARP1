@@ -136,7 +136,7 @@ with tab2:
     formatted_df = performance_df.style.format({'Balanced Accuracy': '{:.2f}', 'Accuracy': '{:.2f}', 
                                                 'Sensitivity': '{:.2f}', 'Specificity': '{:.2f}', 
                                                 'F-Measure': '{:.2f}', 'MCC': '{:.2f}'})
-    st.dataframe(formatted_df.hide_index())
+    #st.dataframe(formatted_df.hide_index())
 
 with tab3:
     st.header('Contact')
