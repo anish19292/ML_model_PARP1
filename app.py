@@ -23,7 +23,7 @@ st.set_page_config(
   initial_sidebar_state='expanded')
 
 # Load your banner image
-banner_image_path = r'C:\Users\anish\Banner.png'
+banner_image_path ='Banner.png'
 banner_image = Image.open(banner_image_path)
 
 # Set the desired width for the banner image
