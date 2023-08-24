@@ -98,7 +98,7 @@ if st.session_state.smiles_input != '':
         st.write(descriptors.shape)
 
     # Load the model and feat_names
-    model_data = pickle.load(open(r'C:\Users\anish\classifier_1.pkl', 'rb'))
+    model_data = pickle.load(open('classifier_1.pkl', 'rb'))
     loaded_classifier = model_data['classifier']
     loaded_feat_names = model_data['feat_names']
 
