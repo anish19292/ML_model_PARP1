@@ -80,7 +80,7 @@ if st.session_state.smiles_input != '':
     if os.path.isfile('molecule.smi'):
         padeldescriptor(mol_dir='molecule.smi', 
                         d_file='descriptors.csv',
-                        descriptortypes=r'C:\Users\anish\PubchemFingerprinter.xml', 
+                        descriptortypes='PubchemFingerprinter.xml', 
                         detectaromaticity=True,
                         standardizenitro=True,
                         standardizetautomers=True,
