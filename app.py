@@ -13,7 +13,7 @@ import pickle
 import pandas as pd
 from PIL import Image
 from rdkit import Chem
-#from rdkit.Chem import AllChem, Draw
+from rdkit.Chem import AllChem, Draw
 from padelpy import padeldescriptor
 
 # Page configuration
@@ -65,9 +65,9 @@ with tab1:
 
     with st.expander('Show chemical structures', expanded=True):
         smi = Chem.MolFromSmiles(st.session_state.smiles_input)
-        #Chem.Draw.MolToFile(smi, 'molecule.png', width=900)
-        #mol_image = Image.open('molecule.png')
-        #st.image(mol_image)
+        Chem.Draw.MolToFile(smi, 'molecule.png', width=900)
+        mol_image = Image.open('molecule.png')
+        st.image(mol_image)
 
     # Input SMILES saved to file
     f = open('molecule.smi', 'w')
@@ -136,7 +136,7 @@ with tab2:
     formatted_df = performance_df.style.format({'Balanced Accuracy': '{:.2f}', 'Accuracy': '{:.2f}', 
                                                 'Sensitivity': '{:.2f}', 'Specificity': '{:.2f}', 
                                                 'F-Measure': '{:.2f}', 'MCC': '{:.2f}'})
-    #st.dataframe(formatted_df.hide_index())
+    st.dataframe(formatted_df.hide_index())
 
 with tab3:
     st.header('Contact')
