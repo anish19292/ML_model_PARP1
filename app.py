@@ -112,15 +112,16 @@ mean_std_data = {
 	'DELS': {'mean':35.08, 'std':15.83}
 }
 
-scaled_desc_1 = (query_desc_2['SsssN'] - mean_std_data['SsssN']['mean']) / mean_std_data['SsssN']['std']
-scaled_desc_2 = (query_desc_2['MAXDN'] - mean_std_data['MAXDN']['mean']) / mean_std_data['MAXDN']['std']
-scaled_desc_3 = (query_desc_2['DELS'] - mean_std_data['DELS']['mean']) / mean_std_data['DELS']['std']
+if not query_desc_2.empty:
+    scaled_desc_1 = (query_desc_2['SsssN'] - mean_std_data['SsssN']['mean']) / mean_std_data['SsssN']['std']
+    scaled_desc_2 = (query_desc_2['MAXDN'] - mean_std_data['MAXDN']['mean']) / mean_std_data['MAXDN']['std']
+    scaled_desc_3 = (query_desc_2['DELS'] - mean_std_data['DELS']['mean']) / mean_std_data['DELS']['std']
 
-scaled_query_desc = pd.DataFrame({'SsssN': scaled_desc_1, 'MAXDN': scaled_desc_2, 'DELS': scaled_desc_3})
+    scaled_query_desc = pd.DataFrame({'SsssN_scaled': scaled_desc_1, 'MAXDN_scaled': scaled_desc_2, 'DELS_scaled': scaled_desc_3})
 
-with st.expander('Show scaled descriptors as used in trained model'):
-    st.write(scaled_query_desc)
-    st.write(scaled_query_desc.shape)
+    with st.expander('Show scaled descriptors as used in trained model'):
+        st.write(scaled_query_desc)
+        st.write(scaled_query_desc.shape)
 
     # Read in saved classification model
 st.subheader('Predictions')
