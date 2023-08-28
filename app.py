@@ -105,12 +105,25 @@ if st.session_state.smiles_input != '':
     query_desc_1 = descriptors.columns.difference(loaded_feat_names)
     query_desc_2 = descriptors.drop(query_desc_1, axis=1)
 
-    with st.expander('Show subset of descriptors as used in trained model'):
-        st.write(query_desc_2)
-        st.write(query_desc_2.shape)
+# Scale the descriptors using Z-score normalization
+mean_std_data = {
+    'SsssN': {'mean': 2.09, 'std': 1.87},
+    'MAXDN': {'mean': 2.28, 'std': 0.96},
+	'DELS': {'mean':35.08, 'std':15.83}
+}
+
+scaled_desc_1 = (query_desc_2['SsssN'] - mean_std_data['SsssN']['mean']) / mean_std_data['SsssN']['std']
+scaled_desc_2 = (query_desc_2['MAXDN'] - mean_std_data['MAXDN']['mean']) / mean_std_data['MAXDN']['std']
+scaled_desc_3 = (query_desc_2['DELS'] - mean_std_data['DELS']['mean']) / mean_std_data['DELS']['std']
+
+scaled_query_desc = pd.DataFrame({'SsssN': scaled_desc_1, 'MAXDN': scaled_desc_2, 'DELS': scaled_desc_3})
+
+with st.expander('Show scaled descriptors as used in trained model'):
+    st.write(scaled_query_desc)
+    st.write(scaled_query_desc.shape)
 
     # Read in saved classification model
-    st.subheader('🤖 Predictions')
+    st.subheader('Predictions')
     pred = int(loaded_classifier.predict(query_desc_2))
     if pred == 0:
         st.error('This compound is expected to be PARP-1 inactive.')
