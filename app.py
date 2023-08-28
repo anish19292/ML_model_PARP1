@@ -112,10 +112,9 @@ mean_std_data = {
 	'DELS': {'mean':35.08, 'std':15.83}
 }
 
-if not query_desc_2.empty:
-    scaled_desc_1 = (query_desc_2['SsssN'] - mean_std_data['SsssN']['mean']) / mean_std_data['SsssN']['std']
-    scaled_desc_2 = (query_desc_2['MAXDN'] - mean_std_data['MAXDN']['mean']) / mean_std_data['MAXDN']['std']
-    scaled_desc_3 = (query_desc_2['DELS'] - mean_std_data['DELS']['mean']) / mean_std_data['DELS']['std']
+scaled_desc_1 = (query_desc_2['SsssN'] - mean_std_data['SsssN']['mean']) / mean_std_data['SsssN']['std']
+scaled_desc_2 = (query_desc_2['MAXDN'] - mean_std_data['MAXDN']['mean']) / mean_std_data['MAXDN']['std']
+scaled_desc_3 = (query_desc_2['DELS'] - mean_std_data['DELS']['mean']) / mean_std_data['DELS']['std']
 
     scaled_query_desc = pd.DataFrame({'SsssN_scaled': scaled_desc_1, 'MAXDN_scaled': scaled_desc_2, 'DELS_scaled': scaled_desc_3})
 
