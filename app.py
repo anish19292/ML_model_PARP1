@@ -75,27 +75,27 @@ with tab1:
     f.close()
 	  
 	   # Compute PADEL descriptors
-if st.session_state.smiles_input != '':
-    st.subheader('🔢 Descriptors')
-    if os.path.isfile('molecule.smi'):
-        padeldescriptor(mol_dir='molecule.smi', 
-                        d_file='descriptors.csv',
-                        descriptortypes='PubchemFingerprinter.xml', 
-                        detectaromaticity=True,
-                        standardizenitro=True,
-                        standardizetautomers=True,
-                        threads=2,
-                        removesalt=True,
-                        log=True,
-                        fingerprints=True,
-                        d_2d=True)
+    if st.session_state.smiles_input != '':
+        st.subheader('🔢 Descriptors')
+        if os.path.isfile('molecule.smi'):
+            padeldescriptor(mol_dir='molecule.smi', 
+                            d_file='descriptors.csv',
+                            descriptortypes='PubchemFingerprinter.xml', 
+                            detectaromaticity=True,
+                            standardizenitro=True,
+                            standardizetautomers=True,
+                            threads=2,
+                            removesalt=True,
+                            log=True,
+                            fingerprints=True,
+                            d_2d=True)
 
-    descriptors = pd.read_csv('descriptors.csv')
-    descriptors.drop('Name', axis=1, inplace=True)
+        descriptors = pd.read_csv('descriptors.csv')
+        descriptors.drop('Name', axis=1, inplace=True)
 
-    with st.expander('Show full set of descriptors as calculated for query molecule'):
-        st.write(descriptors)
-        st.write(descriptors.shape)
+        with st.expander('Show full set of descriptors as calculated for query molecule'):
+            st.write(descriptors)
+            st.write(descriptors.shape)
 
     # Load the model and feat_names
 model_data = pickle.load(open('classifier_1.pkl', 'rb'))
