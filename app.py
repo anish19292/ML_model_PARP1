@@ -123,7 +123,7 @@ with st.expander('Show scaled descriptors as used in trained model'):
     st.write(scaled_query_desc.shape)
 
     # Read in saved classification model
-st.subheader('🤖 Predictions')
+st.subheader('Predictions')
 pred_array = loaded_classifier.predict(scaled_query_desc)
 pred = int(pred_array[0])  # Extract the single element from the array
 
