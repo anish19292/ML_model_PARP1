@@ -16,12 +16,6 @@ from rdkit import Chem
 from rdkit.Chem import AllChem, Draw
 from padelpy import padeldescriptor
 
-# Load and preprocess data
-def load_descriptors():
-    # Load or compute descriptors here
-    # Example: descriptors = pd.read_csv('descriptors.csv')
-    return descriptors
-
 # Page configuration
 st.set_page_config(
   page_title='PARP-1 activity predictor',
@@ -110,9 +104,6 @@ loaded_feat_names = model_data['feat_names']
 
 query_desc_1 = descriptors.columns.difference(loaded_feat_names)
 query_desc_2 = descriptors.drop(query_desc_1, axis=1)
-
-# Load mean and standard deviation data for scaling
-mean_std_data = load_mean_std_data()
 
 # Scale the descriptors using Z-score normalization
 mean_std_data = {
