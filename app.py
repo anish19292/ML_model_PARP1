@@ -97,13 +97,13 @@ with tab1:
             st.write(descriptors)
             st.write(descriptors.shape)
 
-    # Load the model and feat_names
-model_data = pickle.load(open('classifier_1.pkl', 'rb'))
-loaded_classifier = model_data['classifier']
-loaded_feat_names = model_data['feat_names']
+        # Load the model and feat_names
+        model_data = pickle.load(open('classifier_1.pkl', 'rb'))
+        loaded_classifier = model_data['classifier']
+        loaded_feat_names = model_data['feat_names']
 
-query_desc_1 = descriptors.columns.difference(loaded_feat_names)
-query_desc_2 = descriptors.drop(query_desc_1, axis=1)
+        query_desc_1 = descriptors.columns.difference(loaded_feat_names)
+        query_desc_2 = descriptors.drop(query_desc_1, axis=1)
 
 # Scale the descriptors using Z-score normalization
 mean_std_data = {
