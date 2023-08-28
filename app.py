@@ -91,46 +91,46 @@ with tab1:
                             d_2d=True)
 
         descriptors = pd.read_csv('descriptors.csv')
-        descriptors.drop('Name', axis=1, inplace=True)
+            descriptors.drop('Name', axis=1, inplace=True)
 
-        with st.expander('Show full set of descriptors as calculated for query molecule'):
-            st.write(descriptors)
-            st.write(descriptors.shape)
+            with st.expander('Show full set of descriptors as calculated for query molecule'):
+                st.write(descriptors)
+                st.write(descriptors.shape)
 
-        # Load the model and feat_names
-        model_data = pickle.load(open('classifier_1.pkl', 'rb'))
-        loaded_classifier = model_data['classifier']
-        loaded_feat_names = model_data['feat_names']
+            # Load the model and feat_names
+            model_data = pickle.load(open('classifier_1.pkl', 'rb'))
+            loaded_classifier = model_data['classifier']
+            loaded_feat_names = model_data['feat_names']
 
-        query_desc_1 = descriptors.columns.difference(loaded_feat_names)
-        query_desc_2 = descriptors.drop(query_desc_1, axis=1)
+            query_desc_1 = descriptors.columns.difference(loaded_feat_names)
+            query_desc_2 = descriptors.drop(query_desc_1, axis=1)
 
-# Scale the descriptors using Z-score normalization
-mean_std_data = {
-    'SsssN': {'mean': 2.09, 'std': 1.87},
-    'MAXDN': {'mean': 2.28, 'std': 0.96},
-	'DELS': {'mean':35.08, 'std':15.83}
-}
+            # Scale the descriptors using Z-score normalization
+            mean_std_data = {
+                'SsssN': {'mean': 2.09, 'std': 1.87},
+                'MAXDN': {'mean': 2.28, 'std': 0.96},
+                'DELS': {'mean': 35.08, 'std': 15.83}
+            }
 
-scaled_desc_1 = (query_desc_2['SsssN'] - mean_std_data['SsssN']['mean']) / mean_std_data['SsssN']['std']
-scaled_desc_2 = (query_desc_2['MAXDN'] - mean_std_data['MAXDN']['mean']) / mean_std_data['MAXDN']['std']
-scaled_desc_3 = (query_desc_2['DELS'] - mean_std_data['DELS']['mean']) / mean_std_data['DELS']['std']
+            scaled_desc_1 = (query_desc_2['SsssN'] - mean_std_data['SsssN']['mean']) / mean_std_data['SsssN']['std']
+            scaled_desc_2 = (query_desc_2['MAXDN'] - mean_std_data['MAXDN']['mean']) / mean_std_data['MAXDN']['std']
+            scaled_desc_3 = (query_desc_2['DELS'] - mean_std_data['DELS']['mean']) / mean_std_data['DELS']['std']
 
-scaled_query_desc = pd.DataFrame({'SsssN': scaled_desc_1, 'MAXDN': scaled_desc_2, 'DELS': scaled_desc_3})
+            scaled_query_desc = pd.DataFrame({'SsssN': scaled_desc_1, 'MAXDN': scaled_desc_2, 'DELS': scaled_desc_3})
 
-with st.expander('Show scaled descriptors as used in trained model'):
-    st.write(scaled_query_desc)
-    st.write(scaled_query_desc.shape)
+            with st.expander('Show scaled descriptors as used in trained model'):
+                st.write(scaled_query_desc)
+                st.write(scaled_query_desc.shape)
 
-    # Read in saved classification model
-st.subheader('Predictions')
-pred_array = loaded_classifier.predict(scaled_query_desc)
-pred = int(pred_array[0])  # Extract the single element from the array
+            # Read in saved classification model
+            st.subheader('Predictions')
+            pred_array = loaded_classifier.predict(scaled_query_desc)
+            pred = int(pred_array[0])  # Extract the single element from the array
 
-if pred == 0:
-    st.error('This compound is expected to be PARP-1 inactive.')
-if pred == 1:
-    st.success('This compound is expected to be PARP-1 active.')
+            if pred == 0:
+                st.error('This compound is expected to be PARP-1 inactive.')
+            if pred == 1:
+                st.success('This compound is expected to be PARP-1 active.')
 
 with tab2:
     st.header('Dataset')
