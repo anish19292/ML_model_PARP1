@@ -157,7 +157,7 @@ with tab3:
     st.header('Contact')
     st.subheader('Developers:')
     st.write('1. Dr. Anish Gomatam (RA-III, Dept. of Medicinal Chemistry)')
-    st.write('2. Ms. Bhakti Hirlekar (Ph.D. student, Dept. of Medicinal Chemistry)')
+    st.write('2. Ms. Bhakti Hirlekar (Ph.D. scholar, Dept. of Medicinal Chemistry)')
 
     st.subheader('Principal Investigator:')
     st.write('Dr. Vaibhav A. Dixit')
