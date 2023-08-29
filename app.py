@@ -55,7 +55,7 @@ with tab1:
 
         with st.expander('Example SMILES'):
             st.code('CN1C(=NC=N1)C2C(NC3=CC(=CC4=C3C2=NNC4=O)F)C5=CC=C(C=C5)F')
-	    st.code('CC(=O)NC1=CC=C(C=C1)O')
+            st.code('CC(=O)NC1=CC=C(C=C1)O')
 
         submit_button = st.form_submit_button('Submit')
 
