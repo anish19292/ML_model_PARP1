@@ -175,6 +175,6 @@ with tab3:
     user_query = st.text_area("Your Query:")
 
 with tab4:
-  st.header('Funding')
+st.header('Funding')
 st.write('This project has been sponsored by the Ministry of Electronics and Information Technology, Government of India (project reference number No(4)12/2021-ITEA).')
 st.write("A manuscript entitled 'Medicinal chemistry insights and improved models for PARP-1 activity prediction using data balancing, interpretable machine learning and matched molecular pair analysis' is under review.")
