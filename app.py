@@ -135,6 +135,23 @@ with tab1:
 with tab2:
     st.header('Dataset')
     st.write('This model is built using 4298 compounds with PARP-1 activity data curated from the ChEMBL and PubChem databases. The dataset was binarized based on a cut-off of <1 μM for actives and ≥ 1 μM for inactives and balanced using SMOTE.')
+    
+    st.header('Model Performance')
+    performance_data = {
+        'Method/Metric': [ 'kNN classifier'],
+        'Balanced Accuracy': [0.84],
+        'Accuracy': [0.86],
+        'Sensitivity': [0.88],
+        'Specificity': [0.80],
+        'F-Measure': [0.91],
+        'MCC': [0.64]
+    }
+
+    performance_df = pd.DataFrame(performance_data)
+    formatted_df = performance_df.style.format({'Balanced Accuracy': '{:.2f}', 'Accuracy': '{:.2f}', 
+                                                'Sensitivity': '{:.2f}', 'Specificity': '{:.2f}', 
+                                                'F-Measure': '{:.2f}', 'MCC': '{:.2f}'})
+    #st.dataframe(formatted_df.hide_index())
 
 with tab3:
     st.header('Contact')
@@ -161,4 +178,3 @@ with tab4:
   st.header('Funding')
 st.write('This project has been sponsored by the Ministry of Electronics and Information Technology, Government of India (project reference number No(4)12/2021-ITEA).')
 st.write("A manuscript entitled 'Medicinal chemistry insights and improved models for PARP-1 activity prediction using data balancing, interpretable machine learning and matched molecular pair analysis' is under review.")
-
