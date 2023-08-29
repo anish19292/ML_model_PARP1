@@ -137,21 +137,7 @@ with tab2:
     st.write('This model is built using 4298 compounds with PARP-1 activity data curated from the ChEMBL and PubChem databases. The dataset was binarized based on a cut-off of <1 μM for actives and ≥ 1 μM for inactives and balanced using SMOTE.')
     
     st.header('Model Performance')
-    performance_data = {
-        'Method/Metric': [ 'kNN classifier'],
-        'Balanced Accuracy': [0.84],
-        'Accuracy': [0.86],
-        'Sensitivity': [0.88],
-        'Specificity': [0.80],
-        'F-Measure': [0.91],
-        'MCC': [0.64]
-    }
-
-    performance_df = pd.DataFrame(performance_data)
-    formatted_df = performance_df.style.format({'Balanced Accuracy': '{:.2f}', 'Accuracy': '{:.2f}', 
-                                                'Sensitivity': '{:.2f}', 'Specificity': '{:.2f}', 
-                                                'F-Measure': '{:.2f}', 'MCC': '{:.2f}'})
-    #st.dataframe(formatted_df.hide_index())
+	st.write('The model has accuracy 0.86, sensitivity 0.88, and specificity 0.80.')
 
 with tab3:
     st.header('Contact')
