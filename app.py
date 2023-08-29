@@ -54,7 +54,8 @@ with tab1:
         st.session_state.smiles_input = smiles_txt
 
         with st.expander('Example SMILES'):
-            st.code('O=C(c1cc(Cc2n[nH]c(=O)c3ccccc23)ccc1F)N1CCN(C(=O)C2CC2)CC1')
+            st.code('CN1C(=NC=N1)C2C(NC3=CC(=CC4=C3C2=NNC4=O)F)C5=CC=C(C=C5)F')
+	    st.code('CC(=O)NC1=CC=C(C=C1)O')
 
         submit_button = st.form_submit_button('Submit')
 
