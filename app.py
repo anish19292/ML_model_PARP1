@@ -135,9 +135,6 @@ with tab1:
 with tab2:
     st.header('Dataset')
     st.write('This model is built using 4298 compounds with PARP-1 activity data curated from the ChEMBL and PubChem databases. The dataset was binarized based on a cut-off of <1 μM for actives and ≥ 1 μM for inactives and balanced using SMOTE.')
-    
-    st.header('Model Performance')
-    st.write('The model has accuracy 0.86, sensitivity 0.88 and specificity 0.80.')
 
 with tab3:
     st.header('Contact')
