@@ -128,9 +128,9 @@ with tab1:
             pred_array = loaded_classifier.predict(scaled_query_desc)
             pred = int(pred_array[0])  # Extract the single element from the array
 
-            if pred == 0:
-                st.error('This compound is expected to be PARP-1 inactive.')
             if pred == 1:
+                st.error('This compound is expected to be PARP-1 inactive.')
+            if pred == 0:
                 st.success('This compound is expected to be PARP-1 active.')
 
 with tab2:
