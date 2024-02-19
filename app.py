@@ -4,14 +4,16 @@ import pickle
 import pandas as pd
 from PIL import Image
 from rdkit import Chem
-from rdkit.Chem import AllChem, Draw
+from rdkit.Chem import Draw
 from padelpy import padeldescriptor
 
 # Page configuration
 st.set_page_config(
-  page_title='PARP-1 activity predictor',
-  page_icon='💊',
-  initial_sidebar_state='expanded')
+    page_title='PARP-1 activity predictor',
+    page_icon='💊',
+    initial_sidebar_state='expanded',
+    layout='wide'
+)
 
 # Load your banner image
 banner_image_path ='Banner.png'
@@ -25,17 +27,16 @@ st.image(banner_image, width=banner_image_width)
 
 # Session state
 if 'smiles_input' not in st.session_state:
-  st.session_state.smiles_input = ''
+    st.session_state.smiles_input = ''
 
 # Utilities
 if os.path.isfile('molecule.smi'):
-  os.remove('molecule.smi') 
+    os.remove('molecule.smi') 
 
 # The App    
 st.info('This GUI allow users to predict whether a query molecule is likely to be active/inactive towards the PARP-1 enzyme.')
 
-tab1,tab2,tab3,tab4 = st.tabs(['GUI', 'Dataset and Model Performance', 'Contact', 'Acknowledgements'])
-
+tab1, tab2, tab3, tab4 = st.columns(4)
 
 with tab1:
     with st.form('my_form'):
@@ -45,7 +46,7 @@ with tab1:
         st.session_state.smiles_input = smiles_txt
 
         with st.expander('Example SMILES'):
-            st.code('C1CC1C(=O)N2CCN(CC2)C(=O)C3=C(C=CC(=C3)CC4=NNC(=O)C5=CC=CC=C54)F')
+            st.code('C1CC1C(=O)N2CCN(CC2)C(=O)C3=C(C=CC(=C3)CC4=NNC(=O)C5=CC=CC=C54)')
             st.code('COc1ccc2c(c1)nc([nH]2)S(=O)Cc1ncc(c(c1C)OC)C')
 
         submit_button = st.form_submit_button('Submit')
@@ -57,7 +58,7 @@ with tab1:
 
     with st.expander('Show chemical structures', expanded=True):
         smi = Chem.MolFromSmiles(st.session_state.smiles_input)
-        Chem.Draw.MolToFile(smi, 'molecule.png', width=900)
+        Draw.MolToFile(smi, 'molecule.png', width=900)
         mol_image = Image.open('molecule.png')
         st.image(mol_image)
 
@@ -65,8 +66,8 @@ with tab1:
     f = open('molecule.smi', 'w')
     f.write(f'{st.session_state.smiles_input}\tmol_001')
     f.close()
-	  
-	   # Compute PADEL descriptors
+      
+       # Compute PADEL descriptors
     if st.session_state.smiles_input != '':
             st.subheader('🔢 Descriptors')
             if os.path.isfile('molecule.smi'):
@@ -153,6 +154,6 @@ with tab3:
     user_query = st.text_area("Your Query:")
 
 with tab4:
-	st.header('Funding')
-	st.write('This project has been sponsored by the Ministry of Electronics and Information Technology, Government of India (project reference number No(4)12/2021-ITEA).')
-	st.write("A manuscript entitled 'Medicinal chemistry insights and improved models for PARP-1 activity prediction using data balancing, interpretable machine learning and matched molecular pair analysis' is under review.")
+    st.header('Funding')
+    st.write('This project has been sponsored by the Ministry of Electronics and Information Technology, Government of India (project reference number No(4)12/2021-ITEA).')
+    st.write("A manuscript entitled 'Medicinal chemistry insights and improved models for PARP-1 activity prediction using data balancing, interpretable machine learning and matched molecular pair analysis' is under review.")
